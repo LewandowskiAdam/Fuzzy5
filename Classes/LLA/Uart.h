@@ -44,7 +44,7 @@ namespace LLA {
         uint8_t uartRxBuffer[2][UART_BUFFER_SIZE];
         uint8_t uartTxBuffer[UART_BUFFER_SIZE];
         uint8_t *uartRxDmaBuffer;
-        uint8_t bytesToSend;
+        uint16_t bytesToSend;
         LLA::UartListener *uartListener;
         uint8_t isInitialized;
 

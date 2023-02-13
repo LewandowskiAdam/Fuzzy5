@@ -29,9 +29,15 @@
 #define MONITORING_TASK_LED_ON_TIME_MS 100
 #define MONITORING_TASK_NAME "Monitoring"
 #define MONITORING_TASK_BUFFER_SIZE 1024
+#define MONITORING_USE_UART 1
+#define MONITORING_USE_RTT 1
 
 //-----------------UART tasks---------------------//
+#if MONITORING_USE_UART
+#define UART_BUFFER_SIZE MONITORING_TASK_BUFFER_SIZE
+#else
 #define UART_BUFFER_SIZE 256
+#endif
 //RX task
 
 #define RX_QUEUE_DEPTH 10

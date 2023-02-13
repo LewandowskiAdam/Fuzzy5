@@ -40,6 +40,7 @@ namespace NeuroFuzzy {
         uart->setListener(this);
         uartSend(StringLiterals::InitializationComplete);
         loadTask.setSystemListener(this);
+        monitorTask.setSystemListener(this);
     }
 
     //interfaces methods

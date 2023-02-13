@@ -8,6 +8,8 @@
 #ifndef NEUROFUZZYS22_SYSTEMLISTENER_H
 #define NEUROFUZZYS22_SYSTEMLISTENER_H
 
+#include "string"
+
 namespace NeuroFuzzy {
     class SystemListener {
     public:
