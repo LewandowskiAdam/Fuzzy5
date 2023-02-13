@@ -1,0 +1,51 @@
+/*
+    Configuration.h
+    Author: Adam Lewandowski
+    @startuml
+    @enduml
+*/
+
+#ifndef NEUROFUZZYS22_CONFIGURATION_H
+#define NEUROFUZZYS22_CONFIGURATION_H
+
+#include "MemorySpecialAllocators.h"
+
+//Some task definitions/configurations
+
+//sector allocator for rtos objects (most of them) into fast ram memory (Instruction Tightly Coupled Memory - ITCM, one cycle latency)
+#define RTOS_MEMORY_ALLOCATION MEM_FORCE_ITCMRAM
+//sector allocator for call type objects (functions/methods) into fast ram memory (Instruction Tightly Coupled Memory - ITCM, one cycle latency)
+#define QUICK_ACCESS_CALL_ALLOCATION MEM_FORCE_ITCMRAM
+//sector allocator for data type objects (functions/methods) into fast ram memory (Data Tightly Coupled Memory - DTCM, one cycle latency)
+#define QUICK_ACCESS_DATA_ALLOCATION MEM_FORCE_DTCMRAM
+
+//----------------Default task---------------------//
+#define DEFAULT_TASK_LED_INTERVAL_MS 500
+#define DEFAULT_TASK_BUFFER_SIZE 128
+#define DEFAULT_TASK_NAME "System breathing"
+
+//---------------Monitoring Task-------------------//
+#define MONITORING_TASK_INTERVAL_MS 1000
+#define MONITORING_TASK_LED_ON_TIME_MS 100
+#define MONITORING_TASK_NAME "Monitoring"
+#define MONITORING_TASK_BUFFER_SIZE 1024
+
+//-----------------UART tasks---------------------//
+#define UART_BUFFER_SIZE 256
+//RX task
+
+#define RX_QUEUE_DEPTH 10
+#define UART_RX_TASK_BUFFER_SIZE 128
+#define UART_RX_TASK_NAME "Uart RX"
+
+//TX task
+#define TX_QUEUE_DEPTH 10
+#define UART_TX_TASK_BUFFER_SIZE 128
+#define UART_TX_TASK_NAME "Uart TX"
+
+//------------------Load task---------------------//
+#define LOAD_QUEUE_DEPTH 2
+#define LOAD_TASK_BUFFER_SIZE 128
+#define LOAD_TASK_NAME "Load"
+
+#endif
