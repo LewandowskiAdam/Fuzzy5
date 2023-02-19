@@ -77,7 +77,7 @@ const osThreadAttr_t loadTask_attributes = {
 };
 
 
-unsigned long SystemTicksCounter;
+volatile unsigned long SystemTicksCounter;
 extern TIM_HandleTypeDef htim16;
 
 void configureTimerForRunTimeStats(void) {
@@ -90,6 +90,7 @@ unsigned long getRunTimeCounterValue(void) {
     * To be modified to return directly value of timer counter register
     * this is rtos overrided statistics function
     */
+
     return SystemTicksCounter;
 }
 

@@ -9,11 +9,8 @@
 #define NEUROFUZZYS22_MOTORTASK_H
 
 namespace Tasks {
-
     class MotorTask {
 
     };
-
-} // Tasks
-
+}
 #endif

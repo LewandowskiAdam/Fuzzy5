@@ -21,7 +21,7 @@
 
 //----------------Default task---------------------//
 #define DEFAULT_TASK_LED_INTERVAL_MS 500
-#define DEFAULT_TASK_BUFFER_SIZE 128
+#define DEFAULT_TASK_BUFFER_SIZE 256
 #define DEFAULT_TASK_NAME "System breathing"
 #define DEFAULT_TASK_PRIORITY osPriorityBelowNormal7
 
@@ -30,7 +30,7 @@
 #define MONITORING_TASK_LED_ON_TIME_MS 100
 #define MONITORING_TASK_NAME "Monitoring"
 #define MONITORING_TASK_PRIORITY osPriorityBelowNormal6
-#define MONITORING_TASK_BUFFER_SIZE 128
+#define MONITORING_TASK_BUFFER_SIZE 256
 #define MONITORING_TASK_BUFFER_DATA_SIZE 1024
 #define MONITORING_USE_UART 1
 #define MONITORING_USE_RTT 1
@@ -50,13 +50,13 @@
 
 //TX task
 #define TX_QUEUE_DEPTH 10
-#define UART_TX_TASK_BUFFER_SIZE 128
+#define UART_TX_TASK_BUFFER_SIZE 256
 #define UART_TX_TASK_NAME "Uart TX"
 #define UART_TX_PRIORITY osPriorityNormal6
 
 //------------------Load task---------------------//
 #define LOAD_QUEUE_DEPTH 2
-#define LOAD_TASK_BUFFER_SIZE 128
+#define LOAD_TASK_BUFFER_SIZE 256
 #define LOAD_TASK_NAME "Load"
 #define LOAD_TASK_PRIORITY osPriorityNormal5
 

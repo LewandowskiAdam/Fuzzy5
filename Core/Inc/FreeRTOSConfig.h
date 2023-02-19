@@ -52,6 +52,7 @@
   #include <stdint.h>
   extern uint32_t SystemCoreClock;
 /* USER CODE BEGIN 0 */
+  extern volatile unsigned long SystemTicksCounter;
   extern void configureTimerForRunTimeStats(void);
   extern unsigned long getRunTimeCounterValue(void);
 /* USER CODE END 0 */
