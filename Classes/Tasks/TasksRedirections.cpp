@@ -25,11 +25,11 @@ const osThreadAttr_t defaultTask_attributes = {
         .cb_size = sizeof(defaultTaskControlBlock),
         .stack_mem = &defaultTaskBuffer[0],
         .stack_size = sizeof(defaultTaskBuffer),
-        .priority = (osPriority_t) osPriorityNormal,
+        .priority = (osPriority_t) DEFAULT_TASK_PRIORITY,
 };
 
 osThreadId_t monitoringTaskHande RTOS_MEMORY_ALLOCATION;
-uint32_t monitoringTaskBuffer[DEFAULT_TASK_BUFFER_SIZE] RTOS_MEMORY_ALLOCATION;
+uint32_t monitoringTaskBuffer[MONITORING_TASK_BUFFER_SIZE] RTOS_MEMORY_ALLOCATION;
 osStaticThreadDef_t monitoringTaskControlBlock RTOS_MEMORY_ALLOCATION;
 const osThreadAttr_t monitoringTask_attributes = {
         .name = MONITORING_TASK_NAME,
@@ -37,7 +37,7 @@ const osThreadAttr_t monitoringTask_attributes = {
         .cb_size = sizeof(monitoringTaskControlBlock),
         .stack_mem = &monitoringTaskBuffer[0],
         .stack_size = sizeof(monitoringTaskBuffer),
-        .priority = (osPriority_t) osPriorityNormal,
+        .priority = (osPriority_t) MONITORING_TASK_PRIORITY,
 };
 
 osThreadId_t uartRxTaskHandle RTOS_MEMORY_ALLOCATION;
@@ -49,7 +49,7 @@ const osThreadAttr_t uartRxTask_attributes = {
         .cb_size = sizeof(uartRxTaskControlBlock),
         .stack_mem = &uartRxTaskBuffer[0],
         .stack_size = sizeof(uartRxTaskBuffer),
-        .priority = (osPriority_t) osPriorityNormal,
+        .priority = (osPriority_t) UART_RX_PRIORITY,
 };
 
 osThreadId_t uartTxTaskHandle RTOS_MEMORY_ALLOCATION;
@@ -61,7 +61,7 @@ const osThreadAttr_t uartTxTask_attributes = {
         .cb_size = sizeof(uartTxTaskControlBlock),
         .stack_mem = &uartTxTaskBuffer[0],
         .stack_size = sizeof(uartTxTaskBuffer),
-        .priority = (osPriority_t) osPriorityNormal,
+        .priority = (osPriority_t) UART_TX_PRIORITY,
 };
 
 osThreadId_t loadTaskHandle RTOS_MEMORY_ALLOCATION;
@@ -73,7 +73,7 @@ const osThreadAttr_t loadTask_attributes = {
         .cb_size = sizeof(loadTaskControlBlock),
         .stack_mem = &loadTaskBuffer[0],
         .stack_size = sizeof(loadTaskBuffer),
-        .priority = (osPriority_t) osPriorityNormal,
+        .priority = (osPriority_t) LOAD_TASK_PRIORITY,
 };
 
 

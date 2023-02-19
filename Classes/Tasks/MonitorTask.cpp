@@ -21,7 +21,7 @@ namespace Tasks {
         }
     }
     void MonitorTask::task() {
-        static char data[MONITORING_TASK_BUFFER_SIZE] RTOS_MEMORY_ALLOCATION;
+        static char data[MONITORING_TASK_BUFFER_DATA_SIZE] RTOS_MEMORY_ALLOCATION;;
         while (1) {
             osDelay(MONITORING_TASK_INTERVAL_MS-MONITORING_TASK_LED_ON_TIME_MS);
             LLA::Led::on(LLA::LedBlue());

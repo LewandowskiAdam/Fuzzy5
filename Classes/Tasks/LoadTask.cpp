@@ -69,6 +69,12 @@ namespace Tasks {
                     message = message.substr(0, numberEnd);
                     if (isNumber(message)) {
                         int setValue = std::stoi(message);
+                        if (setValue > 100) {
+                            setValue = 100;
+                        }
+                        if (setValue < 0) {
+                            setValue = 0;
+                        }
                         setPwmValue(setValue);
                         pwmValue = setValue;
                         string toSend(StringLiterals::LoadSetMessage);
