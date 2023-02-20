@@ -17,6 +17,7 @@
 #include "MonitorTask.h"
 #include "LoadTask.h"
 #include "UartString.h"
+#include "MotorControlTask.h"
 
 namespace NeuroFuzzy {
 
@@ -33,6 +34,7 @@ class System : public LLA::UartListener, public SystemListener{
         static Tasks::UartTasks uartTasks RTOS_MEMORY_ALLOCATION;
         static Tasks::MonitorTask monitorTask RTOS_MEMORY_ALLOCATION;
         static Tasks::LoadTask loadTask RTOS_MEMORY_ALLOCATION;
+        static Tasks::MotorControlTask motorControlTask RTOS_MEMORY_ALLOCATION;
         System();
         void init();
 

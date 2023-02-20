@@ -26,7 +26,7 @@ void RTOS_MonitoringTask(void *arguments);
 void RTOS_UartRxTask(void *arguments);
 void RTOS_UartTxTask(void *arguments);
 void RTOS_LoadTask(void *arguments);
-void RTOS_MotorTask(void *arguments);
+void RTOS_MotorControlTask(void *arguments);
 
 #ifdef __cplusplus
 }
