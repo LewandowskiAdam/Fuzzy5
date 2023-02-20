@@ -19,7 +19,7 @@
 //sector allocator for data type objects (functions/methods) into fast ram memory (Data Tightly Coupled Memory - DTCM, one cycle latency)
 #define QUICK_ACCESS_DATA_ALLOCATION MEM_FORCE_DTCMRAM
 
-//----------------Default task---------------------//
+//----------------System breathing task---------------------//
 #define DEFAULT_TASK_LED_INTERVAL_MS 500
 #define DEFAULT_TASK_BUFFER_SIZE 256
 #define DEFAULT_TASK_NAME "System breathing"
@@ -34,6 +34,7 @@
 #define MONITORING_TASK_BUFFER_DATA_SIZE 1024
 #define MONITORING_USE_UART 1
 #define MONITORING_USE_RTT 1
+#define MONITORING_BLINK_ACTIVITY 0
 
 //-----------------UART tasks---------------------//
 #if MONITORING_USE_UART
@@ -59,5 +60,11 @@
 #define LOAD_TASK_BUFFER_SIZE 256
 #define LOAD_TASK_NAME "Load"
 #define LOAD_TASK_PRIORITY osPriorityNormal5
+
+//----------------Motor control task---------------------//
+#define MOTOR_CONTROL_TASK_BUFFER_SIZE 256
+#define MOTOR_CONTROL_TASK_NAME "Motor Control"
+#define MOTOR_CONTROL_TASK_PRIORITY osPriorityRealtime2
+
 
 #endif

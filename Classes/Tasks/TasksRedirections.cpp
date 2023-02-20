@@ -16,7 +16,7 @@ extern NeuroFuzzy::System neuroFuzzySystem;
 
 typedef StaticTask_t osStaticThreadDef_t;
 
-osThreadId_t defaultTaskHande RTOS_MEMORY_ALLOCATION;
+osThreadId_t systemBreathing RTOS_MEMORY_ALLOCATION;
 uint32_t defaultTaskBuffer[DEFAULT_TASK_BUFFER_SIZE] RTOS_MEMORY_ALLOCATION;
 osStaticThreadDef_t defaultTaskControlBlock RTOS_MEMORY_ALLOCATION;
 const osThreadAttr_t defaultTask_attributes = {
@@ -76,6 +76,19 @@ const osThreadAttr_t loadTask_attributes = {
         .priority = (osPriority_t) LOAD_TASK_PRIORITY,
 };
 
+osThreadId_t motorControlTaskHandle RTOS_MEMORY_ALLOCATION;
+uint32_t motorControlTaskBuffer[MOTOR_CONTROL_TASK_BUFFER_SIZE] RTOS_MEMORY_ALLOCATION;
+osStaticThreadDef_t motorControlTaskControlBlock RTOS_MEMORY_ALLOCATION;
+const osThreadAttr_t motorControlTask_attributes = {
+        .name = MOTOR_CONTROL_TASK_NAME,
+        .cb_mem = &motorControlTaskControlBlock,
+        .cb_size = sizeof(motorControlTaskControlBlock),
+        .stack_mem = &motorControlTaskBuffer[0],
+        .stack_size = sizeof(motorControlTaskBuffer),
+        .priority = (osPriority_t) MOTOR_CONTROL_TASK_PRIORITY,
+};
+
+
 
 volatile unsigned long SystemTicksCounter;
 extern TIM_HandleTypeDef htim16;
@@ -114,10 +127,15 @@ void RTOS_LoadTask(void *arguments) {
     neuroFuzzySystem.loadTask.task();
 }
 
+void RTOS_MotorControlTask(void *arguments) {
+    neuroFuzzySystem.motorControlTask.task();
+}
+
 void MX_FREERTOS_Init(void) {
-    defaultTaskHande = osThreadNew(RTOS_DefaultTask, NULL, &defaultTask_attributes);
+    systemBreathing = osThreadNew(RTOS_DefaultTask, NULL, &defaultTask_attributes);
     monitoringTaskHande = osThreadNew(RTOS_MonitoringTask, NULL, &monitoringTask_attributes);
     uartRxTaskHandle = osThreadNew(RTOS_UartRxTask, NULL, &uartRxTask_attributes);
     uartTxTaskHandle = osThreadNew(RTOS_UartTxTask, NULL, &uartTxTask_attributes);
     loadTaskHandle = osThreadNew(RTOS_LoadTask, NULL, &loadTask_attributes);
+    motorControlTaskHandle = osThreadNew(RTOS_MotorControlTask, NULL, &motorControlTask_attributes);
 }
