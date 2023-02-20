@@ -10,8 +10,6 @@
 #include "Configuration.h"
 #include "tim.h"
 
-#include "Led.h"
-
 extern NeuroFuzzy::System neuroFuzzySystem;
 
 typedef StaticTask_t osStaticThreadDef_t;
@@ -107,6 +105,20 @@ unsigned long getRunTimeCounterValue(void) {
     return SystemTicksCounter;
 }
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+    switch(GPIO_Pin){
+        case GPIO_PIN_13:
+            neuroFuzzySystem.gpioInterruptRoutine(1);
+            break;
+        case GPIO_PIN_14:
+            neuroFuzzySystem.gpioInterruptRoutine(2);
+            break;
+        default:
+            neuroFuzzySystem.gpioInterruptRoutine(0);
+            break;
+    }
+}
+
 void RTOS_DefaultTask(void *arguments) {
     neuroFuzzySystem.defaultTask.task();
 }
@@ -127,7 +139,7 @@ void RTOS_LoadTask(void *arguments) {
     neuroFuzzySystem.loadTask.task();
 }
 
-void RTOS_MotorControlTask(void *arguments) {
+void RTOS_MotorControlBEMFMonitoringTask(void *arguments) {
     neuroFuzzySystem.motorControlTask.task();
 }
 
@@ -137,5 +149,5 @@ void MX_FREERTOS_Init(void) {
     uartRxTaskHandle = osThreadNew(RTOS_UartRxTask, NULL, &uartRxTask_attributes);
     uartTxTaskHandle = osThreadNew(RTOS_UartTxTask, NULL, &uartTxTask_attributes);
     loadTaskHandle = osThreadNew(RTOS_LoadTask, NULL, &loadTask_attributes);
-    motorControlTaskHandle = osThreadNew(RTOS_MotorControlTask, NULL, &motorControlTask_attributes);
+    motorControlTaskHandle = osThreadNew(RTOS_MotorControlBEMFMonitoringTask, NULL, &motorControlTask_attributes);
 }

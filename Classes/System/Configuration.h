@@ -16,7 +16,7 @@
 #define RTOS_MEMORY_ALLOCATION MEM_FORCE_ITCMRAM
 //sector allocator for call type objects (functions/methods) into fast ram memory (Instruction Tightly Coupled Memory - ITCM, one cycle latency)
 #define QUICK_ACCESS_CALL_ALLOCATION MEM_FORCE_ITCMRAM
-//sector allocator for data type objects (functions/methods) into fast ram memory (Data Tightly Coupled Memory - DTCM, one cycle latency)
+//sector allocator for data type objects (variables/structures) into fast ram memory (Data Tightly Coupled Memory - DTCM, one cycle latency)
 #define QUICK_ACCESS_DATA_ALLOCATION MEM_FORCE_DTCMRAM
 
 //----------------System breathing task---------------------//
@@ -32,8 +32,8 @@
 #define MONITORING_TASK_PRIORITY osPriorityBelowNormal6
 #define MONITORING_TASK_BUFFER_SIZE 256
 #define MONITORING_TASK_BUFFER_DATA_SIZE 1024
-#define MONITORING_USE_UART 1
-#define MONITORING_USE_RTT 1
+#define MONITORING_USE_UART 0
+#define MONITORING_USE_RTT 0
 #define MONITORING_BLINK_ACTIVITY 0
 
 //-----------------UART tasks---------------------//

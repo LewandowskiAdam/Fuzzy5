@@ -9,6 +9,7 @@
 #include "MotorHighSide.h"
 #include "StringLiterals.h"
 #include "UartString.h"
+#include "SEGGER_RTT.h"
 
 Tasks::SystemBreathing NeuroFuzzy::System::defaultTask;
 Tasks::UartTasks NeuroFuzzy::System::uartTasks;
@@ -42,6 +43,30 @@ namespace NeuroFuzzy {
         uartSend(StringLiterals::InitializationComplete);
         loadTask.setSystemListener(this);
         monitorTask.setSystemListener(this);
+    }
+
+    void System::gpioInterruptRoutine(uint16_t GpioPin) {
+        switch (GpioPin) {
+            case 1:
+                button1InterruptRoutine();
+                break;
+            case 2:
+                button2InterruptRoutine();
+                break;
+            default:
+                buttonNotPresentInterruptRoutine();
+                break;
+        }
+    }
+    void System::buttonNotPresentInterruptRoutine(){
+        SEGGER_RTT_printf(0, "WARNING! WARNING! WARNING!\n");
+        SEGGER_RTT_printf(0, "EXTI interrupt from unknown source!\n");
+    }
+    void System::button1InterruptRoutine(){
+        SEGGER_RTT_printf(0, "Button 1 pressed!\n");
+    }
+    void System::button2InterruptRoutine(){
+        SEGGER_RTT_printf(0, "Button 2 pressed!\n");
     }
 
     //interfaces methods

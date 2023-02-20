@@ -29,6 +29,10 @@ class System : public LLA::UartListener, public SystemListener{
         LLA::MotorLowSide* motorLowSide;
         LLA::Uart* uart;
 
+        void buttonNotPresentInterruptRoutine();
+        void button1InterruptRoutine();
+        void button2InterruptRoutine();
+
     public:
         static Tasks::SystemBreathing defaultTask RTOS_MEMORY_ALLOCATION;
         static Tasks::UartTasks uartTasks RTOS_MEMORY_ALLOCATION;
@@ -37,6 +41,7 @@ class System : public LLA::UartListener, public SystemListener{
         static Tasks::MotorControlTask motorControlTask RTOS_MEMORY_ALLOCATION;
         System();
         void init();
+        void gpioInterruptRoutine(uint16_t GpioPin);
 
         //methods overrides
         void dataReceivedFromISR(LLA::UartString uartString) override;
