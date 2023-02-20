@@ -18,12 +18,16 @@ namespace LLA {
         static constexpr uint8_t channelCount = 4;
         uint16_t adcValues[channelCount];
         uint8_t isInitialized;
+
         Adc();
-        Adc(const Adc &){};
+
+        Adc(const Adc &) {};
     public:
         uint16_t getValue(LLA::Phase phase);
+
         void init();
-        static Adc* getInstance();
+
+        static Adc *getInstance();
     };
 }
 

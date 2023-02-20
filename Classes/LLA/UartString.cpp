@@ -9,7 +9,7 @@
 #include "StringLiterals.h"
 
 namespace LLA {
-// UartString class definitions
+    // UartString class definitions
     UartString::UartString() {
 
     }

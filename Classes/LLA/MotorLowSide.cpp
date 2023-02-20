@@ -91,7 +91,7 @@ namespace LLA {
             case LLA::Phase::PhaseA:
                 if (valueToSet == 0) {
                     shutdownAPhase();
-                    __HAL_TIM_SetCounter(&htim3, 0);
+                            __HAL_TIM_SetCounter(&htim3, 0);
                 } else {
                     enableAPhase();
                     __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, valueToSet);
@@ -100,7 +100,7 @@ namespace LLA {
             case LLA::Phase::PhaseB:
                 if (valueToSet == 0) {
                     shutdownBPhase();
-                    __HAL_TIM_SetCounter(&htim3, 0);
+                            __HAL_TIM_SetCounter(&htim3, 0);
                 } else {
                     enableBPhase();
                     __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, valueToSet);
@@ -109,7 +109,7 @@ namespace LLA {
             case LLA::Phase::PhaseC:
                 if (valueToSet == 0) {
                     shutdownCPhase();
-                    __HAL_TIM_SetCounter(&htim3, 0);
+                            __HAL_TIM_SetCounter(&htim3, 0);
                 } else {
                     enableCPhase();
                     __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, valueToSet);
