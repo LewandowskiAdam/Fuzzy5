@@ -70,7 +70,13 @@ include_directories(
         Classes/System
         Classes/Tasks
 
-        RTT
+        SEGGER
+        SEGGER/SystemView
+        SEGGER/SystemView/SEGGER
+        SEGGER/SystemView/Sample
+        SEGGER/SystemView/Sample/FreeRTOS
+        SEGGER/SystemView/Sample/FreeRTOS/Config
+        SEGGER/SystemView/Config
 
         Drivers/STM32H7xx_HAL_Driver/Inc
         Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
@@ -93,7 +99,7 @@ file(GLOB_RECURSE SOURCES
         "Core/*.*"
         "Drivers/*.*"
         "Middlewares/*.*"
-        "RTT/*.*"
+        "SEGGER/*.*"
         )
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H743VITX_FLASH.ld)

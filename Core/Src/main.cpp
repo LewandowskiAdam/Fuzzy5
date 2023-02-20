@@ -120,6 +120,7 @@ int main(void) {
     /* Init scheduler */
     osKernelInitialize();
     MX_FREERTOS_Init();
+    traceSTART();
 
     /* Start scheduler */
     neuroFuzzySystem.init();
