@@ -15,7 +15,7 @@ Tasks::SystemBreathing NeuroFuzzy::System::defaultTask;
 Tasks::UartTasks NeuroFuzzy::System::uartTasks;
 Tasks::MonitorTask NeuroFuzzy::System::monitorTask;
 Tasks::LoadTask NeuroFuzzy::System::loadTask;
-Tasks::MotorControlTask NeuroFuzzy::System::motorControlTask;
+Tasks::MotorControlTasks NeuroFuzzy::System::motorControlTask;
 
 namespace NeuroFuzzy {
     System::System() {

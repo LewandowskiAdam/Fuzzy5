@@ -86,8 +86,6 @@ const osThreadAttr_t motorControlTask_attributes = {
         .priority = (osPriority_t) MOTOR_CONTROL_TASK_PRIORITY,
 };
 
-
-
 volatile unsigned long SystemTicksCounter;
 extern TIM_HandleTypeDef htim16;
 
