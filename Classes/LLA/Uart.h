@@ -41,14 +41,14 @@ namespace LLA {
     class Uart : public UartRtosInterface {
     private:
     protected:
-        uint8_t uartRxBuffer[2][UART_BUFFER_SIZE];
-        uint8_t uartTxBuffer[UART_BUFFER_SIZE];
-        uint8_t *uartRxDmaBuffer;
-        uint16_t bytesToSend;
-        LLA::UartListener *uartListener;
-        uint8_t isInitialized;
+        uint8_t uartRxBuffer[2][UART_BUFFER_SIZE] = {0};
+        uint8_t uartTxBuffer[UART_BUFFER_SIZE] = {0};
+        uint8_t *uartRxDmaBuffer = nullptr;
+        uint16_t bytesToSend = 0;
+        LLA::UartListener *uartListener = nullptr;
+        uint8_t isInitialized = 0;
 
-        Uart();
+        Uart() {};
 
         Uart(const Uart &) {}
 

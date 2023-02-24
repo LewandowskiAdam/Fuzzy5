@@ -13,8 +13,6 @@
 #include "MemorySpecialAllocators.h"
 
 namespace LLA {
-    MotorLowSide::MotorLowSide() {}
-
     void MotorLowSide::init() {
         if (isInitialized == 0) {
             HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);

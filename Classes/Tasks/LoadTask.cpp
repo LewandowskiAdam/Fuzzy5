@@ -9,8 +9,8 @@
 #include "Configuration.h"
 #include "cmsis_os.h"
 #include "StringLiterals.h"
-#include "Led.h"
 #include "Load.h"
+#include <cassert>
 
 using namespace std;
 namespace Tasks {
@@ -33,17 +33,15 @@ namespace Tasks {
     }
 
     void LoadTask::setPwmValue(int newValue) {
-        if (loadInstance != nullptr) {
-            loadInstance->setValue(LLA::Phase::PhaseA, newValue);
-            loadInstance->setValue(LLA::Phase::PhaseB, newValue);
-            loadInstance->setValue(LLA::Phase::PhaseC, newValue);
-        }
+        assert(loadInstance != nullptr);
+        loadInstance->setValue(LLA::Phase::PhaseA, newValue);
+        loadInstance->setValue(LLA::Phase::PhaseB, newValue);
+        loadInstance->setValue(LLA::Phase::PhaseC, newValue);
     }
 
     void LoadTask::setSystemListener(NeuroFuzzy::SystemListener *newSystemListener) {
-        if (newSystemListener != nullptr) {
-            systemListener = newSystemListener;
-        }
+        assert(newSystemListener != nullptr);
+        systemListener = newSystemListener;
     }
 
     void LoadTask::task() {

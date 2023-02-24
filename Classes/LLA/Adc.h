@@ -16,10 +16,10 @@ namespace LLA {
     class Adc {
     protected:
         static constexpr uint8_t channelCount = 4;
-        uint16_t adcValues[channelCount];
-        uint8_t isInitialized;
+        uint16_t adcValues[channelCount] = {0};
+        uint8_t isInitialized = 0;
 
-        Adc();
+        Adc() {};
 
         Adc(const Adc &) {};
     public:

@@ -10,6 +10,8 @@
 #include "MemorySpecialAllocators.h"
 #include "usart.h"
 #include "cstring"
+#include "UartString.h"
+#include <cassert>
 
 //Cube functions overrides
 //global RX callback (interrupt)
@@ -26,18 +28,14 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
     }
 }
 
-#include "SEGGER_RTT.h"
-#include "UartString.h"
-
 namespace LLA {
     void UartRtosInterface::setTxSemaphore(SemaphoreHandle_t newTxSemaphore) {
-        if (newTxSemaphore != nullptr) {
-            txSemaphore = newTxSemaphore;
-        }
+        assert(newTxSemaphore != nullptr);
+        txSemaphore = newTxSemaphore;
     }
 
     void UartRtosInterface::getTxSemaphore() {
-        if (txSemaphore == nullptr) return;
+        assert(txSemaphore != nullptr);
         if (!possesTxSemaphore) {
             if (xSemaphoreTake(txSemaphore, portMAX_DELAY) == pdTRUE) {
                 possesTxSemaphore = true;
@@ -46,7 +44,7 @@ namespace LLA {
     }
 
     void UartRtosInterface::giveTxSemaphore() {
-        if (txSemaphore == nullptr) return;
+        assert(txSemaphore != nullptr);
         if (possesTxSemaphore) {
             xSemaphoreGiveFromISR(txSemaphore, nullptr);
             possesTxSemaphore = false;
@@ -54,18 +52,6 @@ namespace LLA {
     }
 
     //UART class definitions
-    Uart::Uart() {
-        for (int i = 0; i < UART_BUFFER_SIZE; i++) {
-            uartRxBuffer[0][i] = 0;
-            uartRxBuffer[1][i] = 0;
-            uartTxBuffer[i] = 0;
-        }
-        bytesToSend = 0;
-        uartRxDmaBuffer = uartRxBuffer[1];
-        isInitialized = 0;
-        uartListener = nullptr;
-    }
-
     void Uart::init() {
         if (isInitialized == 0) {
             isInitialized = 1;
@@ -117,9 +103,8 @@ namespace LLA {
     }
 
     void Uart::setListener(UartListener *newListener) {
-        if (newListener != nullptr) {
-            uartListener = newListener;
-        }
+        assert(newListener != nullptr);
+        uartListener = newListener;
     }
 
     void Uart::rxEventCallback(uint16_t Size) {

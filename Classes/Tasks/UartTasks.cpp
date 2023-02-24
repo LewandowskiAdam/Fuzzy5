@@ -7,9 +7,9 @@
 
 #include "UartTasks.h"
 #include "cmsis_os2.h"
-#include "Led.h"
 #include "StringLiterals.h"
 #include "UartString.h"
+#include <cassert>
 
 namespace Tasks {
     UartTasks::UartTasks() {
@@ -24,16 +24,14 @@ namespace Tasks {
     }
 
     void UartTasks::setUartClassInstance(LLA::Uart *newUartClassInstance) {
-        if (newUartClassInstance != nullptr) {
-            uartInstance = newUartClassInstance;
-            uartInstance->setTxSemaphore(txSemaphore);
-        }
+        assert(newUartClassInstance != nullptr);
+        uartInstance = newUartClassInstance;
+        uartInstance->setTxSemaphore(txSemaphore);
     }
 
     void UartTasks::setSystemControlListener(NeuroFuzzy::SystemListener *newListener) {
-        if (newListener != nullptr) {
-            systemControlListener = newListener;
-        }
+        assert(newListener != nullptr);
+        systemControlListener = newListener;
     }
 
     void UartTasks::addToTxQueue(std::string newMessage) {
