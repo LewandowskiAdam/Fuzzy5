@@ -18,6 +18,7 @@
 #include "LoadTask.h"
 #include "UartString.h"
 #include "MotorControlTasks.h"
+#include "MotorHighSide.h"
 
 namespace NeuroFuzzy {
 
@@ -27,6 +28,8 @@ class System : public LLA::UartListener, public SystemListener{
         LLA::Adc* adc;
         LLA::Load* load;
         LLA::MotorLowSide* motorLowSide;
+        LLA::MotorHighSide* motorHighSide;
+
         LLA::Uart* uart;
 
         void buttonNotPresentInterruptRoutine();

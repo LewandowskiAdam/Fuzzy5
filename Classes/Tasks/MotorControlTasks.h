@@ -17,6 +17,7 @@ namespace Tasks {
         LLA::Adc* adcInstance = nullptr;
 
         void printAdcValues();
+        void printAdcValuesCSV();
     public:
         MotorControlTasks();
         void task();

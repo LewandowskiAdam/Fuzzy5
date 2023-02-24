@@ -9,6 +9,7 @@
 #define NEUROFUZZYS22_MOTORLOWSIDE_H
 
 #include "Phase.h"
+#include <cstdint>
 
 namespace LLA {
     class MotorLowSide {
