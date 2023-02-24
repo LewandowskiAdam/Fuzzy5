@@ -10,13 +10,6 @@
 #include "Phase.h"
 
 namespace LLA {
-    Adc::Adc() {
-        isInitialized = 0;
-        for (int i = 0; i < channelCount; i++) {
-            adcValues[i] = 0;
-        }
-    }
-
     uint16_t Adc::getValue(LLA::Phase phase) {
         switch (phase) {
             case Phase::PhaseA:

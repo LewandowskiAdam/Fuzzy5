@@ -8,17 +8,14 @@
 #include "MonitorTask.h"
 #include "Configuration.h"
 #include "cmsis_os.h"
-#include "Led.h"
-
-#include "SEGGER_RTT.h"
-#include "StringLiterals.h"
+#include <cassert>
 
 namespace Tasks {
     void MonitorTask::setSystemListener(NeuroFuzzy::SystemListener *newSystemListener) {
-        if(newSystemListener!= nullptr){
-            systemListener=newSystemListener;
-        }
+        assert(newSystemListener != nullptr);
+        systemListener = newSystemListener;
     }
+
     void MonitorTask::task() {
         static char data[MONITORING_TASK_BUFFER_DATA_SIZE] RTOS_MEMORY_ALLOCATION;;
         while (1) {
