@@ -44,7 +44,7 @@ namespace LLA {
 
         int getValue(LLA::Phase phase);
 
-        inline void shutdown();
+        void shutdown();
 
         static MotorLowSide *getInstance();
     };

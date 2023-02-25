@@ -14,7 +14,8 @@ namespace NeuroFuzzy {
     class SystemListener {
     public:
         virtual void loadControlListener(std::string message) = 0;
-        virtual void uartSend(std::string message)=0;
+
+        virtual void uartSend(std::string message) = 0;
     };
 }
 #endif

@@ -28,13 +28,13 @@ class System : public LLA::UartListener, public SystemListener{
         LLA::Adc* adc;
         LLA::Load* load;
         LLA::MotorLowSide* motorLowSide;
-        LLA::MotorHighSide* motorHighSide;
-
         LLA::Uart* uart;
 
         void buttonNotPresentInterruptRoutine();
         void button1InterruptRoutine();
         void button2InterruptRoutine();
+
+
 
     public:
         static Tasks::SystemBreathing defaultTask RTOS_MEMORY_ALLOCATION;

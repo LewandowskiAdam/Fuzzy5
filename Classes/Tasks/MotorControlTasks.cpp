@@ -7,7 +7,6 @@
 
 #include "cmsis_os.h"
 #include "MotorControlTasks.h"
-#include "Led.h"
 #include "Adc.h"
 #include <cassert>
 
@@ -18,16 +17,9 @@ namespace Tasks {
     }
 
     void MotorControlTasks::task() {
-        SEGGER_RTT_printf(0, "MotorControlTask start!\n");
         adcInstance = LLA::Adc::getInstance();
         while (1) {
-            printAdcValuesCSV();
             osDelay(1);
-            /*
-            LLA::Led::on(LLA::LedBlue());
-            osDelay(100);
-            LLA::Led::off(LLA::LedBlue());
-            osDelay(100);*/
         }
     }
 
@@ -37,10 +29,37 @@ namespace Tasks {
                           adcInstance->getValue(LLA::Phase::PhaseA), adcInstance->getValue(LLA::Phase::PhaseB),
                           adcInstance->getValue(LLA::Phase::PhaseC), adcInstance->getValue(LLA::Phase::Zero));
     }
+
     void MotorControlTasks::printAdcValuesCSV() {
         assert(adcInstance != nullptr);
         SEGGER_RTT_printf(0, "%d,%d,%d,%d;\n",
                           adcInstance->getValue(LLA::Phase::PhaseA), adcInstance->getValue(LLA::Phase::PhaseB),
                           adcInstance->getValue(LLA::Phase::PhaseC), adcInstance->getValue(LLA::Phase::Zero));
+    }
+
+    void MotorControlTasks::setSystemListenerInstance(NeuroFuzzy::SystemListener *newSystemListener) {
+        assert(newSystemListener != nullptr);
+        systemListener = newSystemListener;
+        motorControl.setSystemListener(newSystemListener);
+    }
+
+    void MotorControlTasks::setMotorLowSide(LLA::MotorLowSide *newInstance) {
+        assert(newInstance != nullptr);
+        motorLowSideInstance = newInstance;
+        motorControl.setMotorLowSideInstance(newInstance);
+    }
+
+    void MotorControlTasks::buttonISR(int buttonPressed) {
+        if (!motorLocked) {
+            //locking motor on any button press for safety reasons
+            motorControl.lockMotor();
+            motorLocked = true;
+        } else {
+            //unlock only when motor previously locked, and pressed specific button
+            if(buttonPressed==1){
+                motorControl.unlockMotor();
+                motorLocked=false;
+            }
+        }
     }
 }

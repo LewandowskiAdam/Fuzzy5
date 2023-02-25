@@ -43,29 +43,38 @@ namespace NeuroFuzzy {
         uartSend(StringLiterals::InitializationComplete);
         loadTask.setSystemListener(this);
         monitorTask.setSystemListener(this);
+        motorControlTask.setSystemListenerInstance(this);
+        motorControlTask.setMotorLowSide(motorLowSide);
     }
 
     void System::gpioInterruptRoutine(uint16_t GpioPin) {
+        int passingValue=0;
         switch (GpioPin) {
             case 1:
+                passingValue=1;
                 button1InterruptRoutine();
                 break;
             case 2:
+                passingValue=2;
                 button2InterruptRoutine();
                 break;
             default:
                 buttonNotPresentInterruptRoutine();
                 break;
         }
+        motorControlTask.buttonISR(passingValue);
     }
-    void System::buttonNotPresentInterruptRoutine(){
+
+    void System::buttonNotPresentInterruptRoutine() {
         SEGGER_RTT_printf(0, "WARNING! WARNING! WARNING!\n");
         SEGGER_RTT_printf(0, "EXTI interrupt from unknown source!\n");
     }
-    void System::button1InterruptRoutine(){
+
+    void System::button1InterruptRoutine() {
         SEGGER_RTT_printf(0, "Button 1 pressed!\n");
     }
-    void System::button2InterruptRoutine(){
+
+    void System::button2InterruptRoutine() {
         SEGGER_RTT_printf(0, "Button 2 pressed!\n");
     }
 
