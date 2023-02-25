@@ -16,6 +16,8 @@ namespace NeuroFuzzy {
         virtual void loadControlListener(std::string message) = 0;
 
         virtual void uartSend(std::string message) = 0;
+
+        virtual void uartSendFromISR(std::string message) = 0;
     };
 }
 #endif

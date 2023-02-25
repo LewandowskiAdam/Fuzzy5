@@ -40,6 +40,12 @@ namespace Tasks {
         xQueueSendToBack(txFreertosQueue, (void *) &string, 0);
     }
 
+    void UartTasks::addToTxQueueFromISR(std::string newMessage) {
+        LLA::UartString string;
+        string.convertFromString(newMessage);
+        xQueueSendToBackFromISR(txFreertosQueue, (void *) &string, 0);
+    }
+
     void UartTasks::addToRxQueueFromISR(LLA::UartString newMessage) {
         xQueueSendToBackFromISR(rxFreertosQueue, (void *) &newMessage, 0);
     }

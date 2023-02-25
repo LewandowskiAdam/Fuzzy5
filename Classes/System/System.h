@@ -49,7 +49,9 @@ class System : public LLA::UartListener, public SystemListener{
         //methods overrides
         void dataReceivedFromISR(LLA::UartString uartString) override;
         void uartSend(std::string message) override;
+        void uartSendFromISR(std::string message) override;
         void loadControlListener(std::string message) override;
     };
 }
 #endif
+

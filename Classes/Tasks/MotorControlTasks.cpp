@@ -54,11 +54,13 @@ namespace Tasks {
             //locking motor on any button press for safety reasons
             motorControl.lockMotor();
             motorLocked = true;
+            systemListener->uartSendFromISR("Motor locked\n");
         } else {
             //unlock only when motor previously locked, and pressed specific button
             if(buttonPressed==1){
                 motorControl.unlockMotor();
                 motorLocked=false;
+                systemListener->uartSendFromISR("Motor unlocked\n");
             }
         }
     }

@@ -87,6 +87,10 @@ namespace NeuroFuzzy {
         uartTasks.addToTxQueue(message);
     }
 
+    void System::uartSendFromISR(std::string message) {
+        uartTasks.addToTxQueueFromISR(message);
+    }
+
     void System::loadControlListener(std::string message) {
         loadTask.addToQueue(LLA::UartString(message));
     }

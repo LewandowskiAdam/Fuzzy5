@@ -56,6 +56,8 @@ namespace Tasks {
 
         void addToTxQueue(std::string newMessage);
 
+        void addToTxQueueFromISR(std::string newMessage);
+
         void addToRxQueueFromISR(LLA::UartString newMessage);
     };
 
