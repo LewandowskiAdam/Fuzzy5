@@ -19,7 +19,7 @@ namespace Tasks {
     class LoadTask {
     private:
     protected:
-        QueueHandle_t loadFreertosQueue;
+        QueueHandle_t loadQueue;
         StaticQueue_t loadQueueControlBlock;
         uint8_t loadQueueStorageArea[LOAD_QUEUE_DEPTH * sizeof(LLA::UartString)];
         LLA::Load* loadInstance = nullptr;

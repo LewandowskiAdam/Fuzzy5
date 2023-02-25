@@ -26,8 +26,8 @@ namespace Tasks {
     protected:
         NeuroFuzzy::SystemListener *systemControlListener = nullptr;
 
-        QueueHandle_t rxFreertosQueue;
-        QueueHandle_t txFreertosQueue;
+        QueueHandle_t rxQueue;
+        QueueHandle_t txQueue;
 
         StaticQueue_t rxQueueControlBlock;
         StaticQueue_t txQueueControlBlock;

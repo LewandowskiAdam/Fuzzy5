@@ -62,6 +62,7 @@
 #define LOAD_TASK_PRIORITY osPriorityNormal5
 
 //----------------Motor control task---------------------//
+#define MOTOR_CONTROL_QUEUE_DEPTH 2
 #define MOTOR_CONTROL_TASK_BUFFER_SIZE 256
 #define MOTOR_CONTROL_TASK_NAME "Motor Control"
 #define MOTOR_CONTROL_TASK_PRIORITY osPriorityRealtime2

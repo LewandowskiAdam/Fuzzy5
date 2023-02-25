@@ -7,7 +7,6 @@
 
 #include "cmsis_os.h"
 #include "MotorControlTasks.h"
-#include "Adc.h"
 #include <cassert>
 
 #include "SEGGER_RTT.h"
