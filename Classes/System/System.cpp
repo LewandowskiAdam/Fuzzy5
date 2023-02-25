@@ -65,6 +65,10 @@ namespace NeuroFuzzy {
         motorControlTask.buttonISR(passingValue);
     }
 
+    void System::adcInterruptRoutine() {
+        motorControlTask.adcISR();
+    }
+
     void System::buttonNotPresentInterruptRoutine() {
         SEGGER_RTT_printf(0, "WARNING! WARNING! WARNING!\n");
         SEGGER_RTT_printf(0, "EXTI interrupt from unknown source!\n");

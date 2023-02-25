@@ -27,6 +27,8 @@ namespace Tasks {
 
         void printAdcValuesCSV();
 
+        int count = 0;
+
     public:
         MotorControlTasks();
 
@@ -38,6 +40,8 @@ namespace Tasks {
 
         //ISR
         void buttonISR(int buttonPressed);
+
+        void adcISR();
     };
 }
 #endif

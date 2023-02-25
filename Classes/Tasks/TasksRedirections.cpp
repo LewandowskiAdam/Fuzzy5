@@ -117,6 +117,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
     }
 }
 
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+    extern ADC_HandleTypeDef hadc3;
+    if(hadc==&hadc3){
+        neuroFuzzySystem.adcInterruptRoutine();
+    }
+}
+
 void RTOS_DefaultTask(void *arguments) {
     neuroFuzzySystem.defaultTask.task();
 }

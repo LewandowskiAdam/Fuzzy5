@@ -45,6 +45,7 @@ class System : public LLA::UartListener, public SystemListener{
         System();
         void init();
         void gpioInterruptRoutine(uint16_t GpioPin);
+        void adcInterruptRoutine();
 
         //methods overrides
         void dataReceivedFromISR(LLA::UartString uartString) override;

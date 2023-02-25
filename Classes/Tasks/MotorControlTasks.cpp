@@ -19,7 +19,9 @@ namespace Tasks {
     void MotorControlTasks::task() {
         adcInstance = LLA::Adc::getInstance();
         while (1) {
-            osDelay(1);
+            osDelay(1000);
+            SEGGER_RTT_printf(0, "ADC freq: %d\n", count);
+            count=0;
         }
     }
 
@@ -63,5 +65,9 @@ namespace Tasks {
                 systemListener->uartSendFromISR("Motor unlocked\n");
             }
         }
+    }
+
+    void MotorControlTasks::adcISR() {
+        count++;
     }
 }
