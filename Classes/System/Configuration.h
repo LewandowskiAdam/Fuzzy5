@@ -66,6 +66,10 @@
 #define MOTOR_CONTROL_TASK_BUFFER_SIZE 256
 #define MOTOR_CONTROL_TASK_NAME "Motor Control"
 #define MOTOR_CONTROL_TASK_PRIORITY osPriorityRealtime2
+//below define have to be values equal to natural powers of 2
+#define MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT 4
+//log from MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT to base 2
+#define MOTOR_CONTROL_ADC_AVERAGE_DIVIDE_VALUE 2
 
 
 #endif
