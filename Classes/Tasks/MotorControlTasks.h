@@ -28,13 +28,10 @@ namespace Tasks {
         LLA::MotorLowSide *motorLowSideInstance = nullptr;
         NeuroFuzzy::SystemListener *systemListener = nullptr;
 
-        bool motorLocked = true;
-
-        void printAdcValues();
-
-        void printAdcValuesCSV();
-
         int count = 0;
+
+        void printADCValues();
+        void printADCValuesCSV();
 
     public:
         MotorControlTasks();
@@ -45,7 +42,9 @@ namespace Tasks {
 
         void setMotorLowSide(LLA::MotorLowSide *newInstance);
 
-        //ISR
+        void setAdcInstance(LLA::Adc *newInstance);
+
+        //ISR's
         void buttonISR(int buttonPressed);
 
         void adcISR();

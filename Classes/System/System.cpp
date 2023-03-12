@@ -45,6 +45,7 @@ namespace NeuroFuzzy {
         monitorTask.setSystemListener(this);
         motorControlTask.setSystemListenerInstance(this);
         motorControlTask.setMotorLowSide(motorLowSide);
+        motorControlTask.setAdcInstance(adc);
     }
 
     void System::gpioInterruptRoutine(uint16_t GpioPin) {
