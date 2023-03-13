@@ -18,6 +18,7 @@
 #include "LoadTask.h"
 #include "UartString.h"
 #include "MotorControlTasks.h"
+#include "MotorHighSide.h"
 
 namespace NeuroFuzzy {
 
@@ -33,6 +34,8 @@ class System : public LLA::UartListener, public SystemListener{
         void button1InterruptRoutine();
         void button2InterruptRoutine();
 
+
+
     public:
         static Tasks::SystemBreathing defaultTask RTOS_MEMORY_ALLOCATION;
         static Tasks::UartTasks uartTasks RTOS_MEMORY_ALLOCATION;
@@ -42,11 +45,14 @@ class System : public LLA::UartListener, public SystemListener{
         System();
         void init();
         void gpioInterruptRoutine(uint16_t GpioPin);
+        void adcInterruptRoutine();
 
         //methods overrides
         void dataReceivedFromISR(LLA::UartString uartString) override;
         void uartSend(std::string message) override;
+        void uartSendFromISR(std::string message) override;
         void loadControlListener(std::string message) override;
     };
 }
 #endif
+

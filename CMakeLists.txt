@@ -69,6 +69,7 @@ include_directories(
         Classes/LLA
         Classes/System
         Classes/Tasks
+        Classes/MotorControl
 
         SEGGER
         SEGGER/SystemView

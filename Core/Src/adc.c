@@ -44,7 +44,7 @@ void MX_ADC3_Init(void)
   /** Common config
   */
   hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV64;
+  hadc3.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV32;
   hadc3.Init.Resolution = ADC_RESOLUTION_14B_OPT;
   hadc3.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc3.Init.EOCSelection = ADC_EOC_SEQ_CONV;

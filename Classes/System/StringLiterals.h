@@ -17,6 +17,7 @@ namespace StringLiterals {
     const char UartTxQueueName[] = "Uart tx queue";
     const char UartRxQueueName[] = "Uart rx queue";
     const char LoadQueueName[] = "Load queue";
+    const char MotorControlQueueName[] = "Motor control queue";
     const char Separator[] = " ";
     const char MonitoringStartSeparator[] = "-------------------------------Tasks--------------------------------\n";
     const char MonitoringSeparator[] = "--------------------------------------------------------------------\n";

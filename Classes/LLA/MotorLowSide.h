@@ -9,6 +9,7 @@
 #define NEUROFUZZYS22_MOTORLOWSIDE_H
 
 #include "Phase.h"
+#include <cstdint>
 
 namespace LLA {
     class MotorLowSide {
@@ -43,7 +44,7 @@ namespace LLA {
 
         int getValue(LLA::Phase phase);
 
-        inline void shutdown();
+        void shutdown();
 
         static MotorLowSide *getInstance();
     };

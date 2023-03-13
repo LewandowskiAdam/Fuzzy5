@@ -73,7 +73,9 @@ Additional information:
 *
 **********************************************************************
 */
-
+#define SEGGER_SYSVIEW_RTT_BUFFER_SIZE          1024
+#define SEGGER_SYSVIEW_DEVICE_NAME              "Neuro fuzzy controller V5"
+#define SEGGER_SYSVIEW_APP_NAME                 "Neuro-fuzzy bldc motor controler"
 /*********************************************************************
 * TODO: Add your defines here.                                       *
 **********************************************************************

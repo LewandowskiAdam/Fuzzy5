@@ -15,14 +15,14 @@
 using namespace std;
 namespace Tasks {
     LoadTask::LoadTask() {
-        loadFreertosQueue = xQueueCreateStatic(LOAD_QUEUE_DEPTH, sizeof(LLA::UartString), loadQueueStorageArea,
+        loadQueue = xQueueCreateStatic(LOAD_QUEUE_DEPTH, sizeof(LLA::UartString), loadQueueStorageArea,
                                                &loadQueueControlBlock);
-        vQueueAddToRegistry(loadFreertosQueue, StringLiterals::LoadQueueName);
+        vQueueAddToRegistry(loadQueue, StringLiterals::LoadQueueName);
         loadInstance = LLA::Load::getInstance();
     }
 
     void LoadTask::addToQueue(LLA::UartString newMessage) {
-        xQueueSendToBackFromISR(loadFreertosQueue, (void *) &newMessage, 0);
+        xQueueSendToBackFromISR(loadQueue, (void *) &newMessage, 0);
     }
 
     bool LoadTask::isNumber(const string &str) {
@@ -47,7 +47,7 @@ namespace Tasks {
     void LoadTask::task() {
         static LLA::UartString receivedString;
         while (1) {
-            xQueueReceive(loadFreertosQueue, &receivedString, portMAX_DELAY);
+            xQueueReceive(loadQueue, &receivedString, portMAX_DELAY);
             string::size_type controlTypeStringStart;
             string::size_type numberEnd;
             string message;
