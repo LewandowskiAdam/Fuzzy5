@@ -15,7 +15,7 @@
 #include "Configuration.h"
 
 namespace MotorControl {
-    enum class MotorSwitchPhase{
+    enum class MotorSwitchPhase {
         HighALowB,
         HighALowC,
         HighBLowC,
@@ -24,53 +24,69 @@ namespace MotorControl {
         HighCLowB,
     };
 
+    enum class Direction{
+        Clockwise,
+        CounterClockwise,
+    };
+
+    enum class Lock{
+        Unlocked,
+        Locked,
+    };
+
+    enum class Slope{
+        NoSlope,
+        Rising,
+        Falling,
+    };
+
     class MotorControl {
     private:
     protected:
-        NeuroFuzzy::SystemListener* systemListener = nullptr;
-        LLA::MotorLowSide* motorLowSideInstance = nullptr;
-        LLA::Adc* adcInstance = nullptr;
+        NeuroFuzzy::SystemListener *systemListener = nullptr;
+        LLA::MotorLowSide *motorLowSideInstance = nullptr;
+        LLA::Adc *adcInstance = nullptr;
 
-
-        int pwmLowSideValue = 0;
-        //if set to one all outputs are blocked in reset state (to change state motor will need to be first unlocked)
-        uint8_t locked = 1;
-
-        uint8_t phaseValuesReady = false;
-        uint32_t phaseValue[MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT] = {0};
-        uint32_t phaseZeroValue[MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT] = {0};
-        uint8_t sampleCount = 0;
-        //0 for clockwise rotation, 1 for counterclockwise rotation
-        uint8_t direction = 0;
+        //control fields
+        Lock motorLocked = Lock::Locked;
+        int pwmValue = 0;
+        Direction direction = Direction::Clockwise;
         MotorSwitchPhase currentActivePhase = MotorSwitchPhase::HighALowB;
+
+        //adc fields
+        //tables for calculating mean values
+        uint32_t phaseValue[MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT] = {0};
+        uint32_t zeroValue[MOTOR_CONTROL_ADC_AVERAGE_SAMPLES_COUNT] = {0};
+        //other adc related variables
+        bool phaseValuesReady = false;
+        uint8_t sampleCount = 0;
         uint32_t phaseMeanValue = 0;
         uint32_t zeroMeanValue = 0;
-        uint32_t previousPhaseMeanValue = 0;
-        int32_t crossingDirection = 0;
+        int previousPhaseZeroDiffSign = 0;
 
-        //local variables to be placed inside class structure not on stack
-        uint32_t tempAdcValue;
 
-        void turnOffAll();
-        void checkRotationState();
-        void updateAdcValues();
-        void setCurrentPhase(MotorSwitchPhase newPhase);
-        void setPhase();
+        void shutdown();
         MotorSwitchPhase getNextPhase();
+        void updatePhaseOutput();
+        void updateAdcValues();
+        void checkRotationState();
+        void checkSlopeDirection(Slope slopeDirection);
     public:
         MotorControl();
         void setMotorLowSideInstance(LLA::MotorLowSide* newInstance);
         void setSystemListener(NeuroFuzzy::SystemListener* newSystemListener);
         void setAdcInstance(LLA::Adc *newInstance);
-        void setDirection(int newDirection);
-        void setPwmValue(int newPwmValue);
 
+        //control methods
+        Lock getLockState();
         void lockMotor();
         void unlockMotor();
-        uint8_t getLockState();
+        void setPwmValue(int newPwmValue);
+        int getPwmValue();
+        void setDirection(Direction newDirection);
+        Direction getDirection();
 
         void adcISR();
-
     };
 }
 

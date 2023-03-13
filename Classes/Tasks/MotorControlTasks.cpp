@@ -19,10 +19,11 @@ namespace Tasks {
  *----------------------------------------------------------------------------------------------------------------------
  *--------------------------------------------------------------------------------------------------------------------*/
     void MotorControlTasks::task() {
+        motorControl.setPwmValue(15);
         while (1) {
             osDelay(10);
             //SEGGER_RTT_printf(0, "ADC freq: %d\n", count);
-            printADCValuesCSV();
+            //printADCValuesCSV();
             count = 0;
         }
     }
@@ -74,7 +75,7 @@ namespace Tasks {
 
     void MotorControlTasks::buttonISR(int buttonPressed) {
         //lock motor if it is running (always)
-        if (!motorControl.getLockState()) {
+        if (motorControl.getLockState() == MotorControl::Lock::Unlocked) {
             //locking motor on any button press for safety reasons
             motorControl.lockMotor();
             systemListener->uartSendFromISR("Motor locked\n");
@@ -85,8 +86,6 @@ namespace Tasks {
                 motorControl.unlockMotor();
                 systemListener->uartSendFromISR("Motor unlocked\n");
                 LLA::Led::on(LLA::LedBlue());
-                LLA::MotorHighSide::switchOn(LLA::Phase::PhaseA);
-                motorLowSideInstance->setValue(LLA::Phase::PhaseB, 10);
             }
         }
     }
